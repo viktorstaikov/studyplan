@@ -3,7 +3,7 @@ angular.module('app', [
         'LocalStorageModule',
 
         'AuthService',
-        // 'LvlFactory',
+        'CrsFactory',
         // 'PrgrssFactory',
 
         // 'SokobanBoardDirective',

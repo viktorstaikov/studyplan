@@ -6,19 +6,24 @@
     <base href="/">
     <title>Study plan</title>
     <!-- styles -->
-    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/timetable/dist/styles/timetablejs.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--angular specific-->
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
     <script src="libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="libs/timetable/dist/scripts/timetable.min.js"></script>
+    <script src="libs/list.js/dist/list.js"></script>
+    <script src="libs/list.pagination.js/dist/list.pagination.js"></script>
     <!--controllers-->
     <script src="home/HomeCtrl.js"></script>
     <script src="login/LoginCtrl.js"></script>
     <script src="signup/SignupCtrl.js"></script>
     <!--services-->
-    <script src="auth/AuthenticationService.js"></script>
+    <script src="shared/AuthenticationService.js"></script>
     <!-- factories -->
+    <script src="shared/CourseFactory.js"></script>
     <!--directives-->
     <!--other-->
     <script src="main/appRoutes.js"></script>
@@ -35,7 +40,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#/">Home</a></li>
-                        <li><a href="#/about">About</a></li>
+                        <!-- <li><a href="#/about">About</a></li> -->
                     </ul>
                 </div>
             </div>
