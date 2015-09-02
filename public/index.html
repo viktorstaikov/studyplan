@@ -1,1 +1,47 @@
-Hello
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Study plan</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!--angular specific-->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <!--controllers-->
+    <script src="home/HomeCtrl.js"></script>
+    <script src="login/LoginCtrl.js"></script>
+    <script src="signup/SignupCtrl.js"></script>
+    <!--services-->
+    <script src="auth/AuthenticationService.js"></script>
+    <!-- factories -->
+    <!--directives-->
+    <!--other-->
+    <script src="main/appRoutes.js"></script>
+    <script src="main/app.js"></script>
+</head>
+
+<body ng-app="app">
+    <div class="container" >
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Study plan</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/">Home</a></li>
+                        <li><a href="#/about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="container" ng-view></div>
+</body>
+
+</html>

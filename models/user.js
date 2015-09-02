@@ -8,7 +8,10 @@ var userSchema = mongoose.Schema({
         default: 'User' + Date.now()
     },
     password: String,
-    specialty: String,
+    specialty: {
+        type: String,
+        default: "Computer science"
+    },
     semester: {
         type: Number,
         default: 1

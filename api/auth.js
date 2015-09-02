@@ -38,26 +38,26 @@ module.exports = function (app, passport) {
 
     // login user
     app.post('/login', function (req, res) {
-        var email = req.body.email;
+        var facNumber = req.body.facNumber;
         var password = req.body.password;
 
-        if (!(email && password)) {
-            return res.status(400).send("Bad request. Email and password must be provided.");
+        if (!(facNumber && password)) {
+            return res.status(400).send("Bad request. Faculty number and password must be provided.");
         }
 
-        if (!validator.isEmail(email)) {
-            return res.status(400).send("Bad request. Invalid email.");
+        if (!validator.isNumeric(facNumber)) {
+            return res.status(400).send("Bad request. Faculty number must be only numbers.");
         }
 
         User.findOne({
-            email: email
+            "facNumber": facNumber
         }, function (err, user) {
             if (err) {
                 return res.status(500).send(err);
             }
 
             if (!user) {
-                return res.status(400).send("Bad request. No user with that email.");
+                return res.status(400).send("Bad request. No user with that facNumber.");
             }
 
             if (!user.validPassword(password)) {
@@ -79,26 +79,26 @@ module.exports = function (app, passport) {
 
     // register new user
     app.post('/signup', function (req, res) {
-        var email = req.body.email;
+        var facNumber = req.body.facNumber;
         var password = req.body.password;
 
-        if (!(email && password)) {
-            return res.status(400).send("Bad request. Email and password must be provided.");
+        if (!(facNumber && password)) {
+            return res.status(400).send("Bad request. Faculty number and password must be provided.");
         }
 
-        if (!validator.isEmail(email)) {
-            return res.status(400).send("Bad request. Invalid email.");
+        if (!validator.isNumeric(facNumber)) {
+            return res.status(400).send("Bad request. Faculty number must contain only numbers.");
         }
 
         User.findOne({
-            'email': email
+            'facNumber': facNumber
         }, function (err, user) {
             if (err) {
                 return res.status(500).send(err);
             }
 
             if (user) {
-                return res.status(409).send("User with that email already exists");
+                return res.status(409).send("User with that faculty number already exists");
             } else {
                 var newUser = new User(req.body);
                 newUser.password = newUser.generateHash(password);
