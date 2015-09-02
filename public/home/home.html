@@ -9,31 +9,68 @@
 
 
 <div ng-show="user" id="greetings-wrapper">
-    <h3>Greetings, {{user.name}}!!!</h3>
-    <span>Not you? <a class="btn btn-default" id="logoutBtn" ng-click="logout()">Logout</a></span>
+    <div>
+        <h3>Greetings, {{user.name}}!!!</h3>
+        <span>Not you? <a class="btn btn-default" id="logoutBtn" ng-click="logout()">Logout</a></span>
+    </div>
 
     <div class="timetable"></div>
 
-    <div id="hacker-list" class="pull-right col-sm-4">
-        <!-- <input class="search" /> -->
-        <div class="input-group">
-          <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1"></span>
-          <input type="text" class="search form-control" placeholder="Seach" aria-describedby="basic-addon1">
+    <awesome-list items="selectedCourses" displayed="displayedSelectedCourses" initial-sort="name" class="col-sm-6">
+        <div class="pre-table-header row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!-- input for search placed here -->
+                    <awesome-search class="form-control"
+                                    search-fields="['name', 'group', 'teacher', 'type', 'day', 'from', 'to', 'room']"></awesome-search>
+                </div>
+            </div>
         </div>
 
+        <ll class="list-group">
+            <li class="list-group-item" ng-repeat="course in displayedSelectedCourses">
+                <h4>{{course.name}}</h4>
+                <h5>{{course.group}}</h5>
+                <div>{{course.teacher}}</div>
+                <div>{{course.type}}</div>
+                <div>{{course.day}}, от {{course.from}} до {{course.to}}, зала {{course.room}}</div>
+                <a class="btn btn-default" ng-click="removeCourse(course)">Премахни</a>
+            </li>
+        </ll>
 
-        <ul class="list list-group"></ul>
-        <ul class="pagination"></ul>
-    </div>
+        <!-- single tag pagination! (opts forthcoming) -->
+        <awesome-pagination chomp="10" class="pagination pagination-sm"></awesome-pagination>
+    </awesome-list>
+
+    <awesome-list items="courses" displayed="displayedCourses" initial-sort="name" class="col-sm-6">
+        <div class="pre-table-header row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!-- input for search placed here -->
+                    <awesome-search class="form-control"
+                                    search-fields="['name', 'group', 'teacher', 'type', 'day', 'from', 'to', 'room']"></awesome-search>
+                </div>
+            </div>
+        </div>
+
+        <ll class="list-group">
+            <li class="list-group-item" ng-repeat="course in displayedCourses">
+                <h4>{{course.name}}</h4>
+                <h5>{{course.group}}</h5>
+                <div>{{course.teacher}}</div>
+                <div>{{course.type}}</div>
+                <div>{{course.day}}, от {{course.from}} до {{course.to}}, зала {{course.room}}</div>
+                <a class="btn btn-default" ng-click="addCourse(course)">Избери</a>
+            </li>
+        </ll>
+
+        <!-- single tag pagination! (opts forthcoming) -->
+        <awesome-pagination chomp="10" class="pagination pagination-sm"></awesome-pagination>
+    </awesome-list>
 </div>
 
 
-<div style="display:none;">
-    <!-- A template element is needed when list is empty, TODO: needs a better solution -->
-    <li id="hacker-item" class="list-group-item">
-       <h4 class="name"></h4> <span class="group pull-right"></span>
-       <p class="teacher"></p>
-       <p class="type"></p>
-       <span class="day"></span>, от <span class="from"></span> до <span class="to"></span>, стая <span class="room"></span>
-    </li>
-</div>
+
+
+
+

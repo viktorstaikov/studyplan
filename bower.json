@@ -20,6 +20,6 @@
     "angular-route": "latest",
     "angular-local-storage": "~0.1.5",
     "timetable": "~0.5.2",
-    "list.js": "~1.1.1"
+    "awesome-list": "~0.4.4"
   }
 }

@@ -4,13 +4,12 @@ angular.module('app', [
 
         'AuthService',
         'CrsFactory',
-        // 'PrgrssFactory',
+        'SlctFactory',
 
-        // 'SokobanBoardDirective',
+        'awesomeList',
 
         'appRoutes',
         'HomeCtrl',
-        // 'PlayCtrl',
         'LoginCtrl',
         'SignupCtrl',
     ])
