@@ -6,7 +6,7 @@ angular
 
             $scope.user = AuthService.getUser();
 
-            if ($scope.authenticated) {
+            if ($scope.user && $scope.authenticated) {
                 $q.all([
                     CourseFactory.getAll(),
                     SelectionFactory.getAll($scope.user._id)
@@ -105,11 +105,11 @@ angular
                         renderer.draw('.timetable'); // any css selector
                     }
                 });
-            } else {
-                $scope.logout = function () {
-                    AuthService.logout();
-                    $route.reload();
-                }
+            }
+
+            $scope.logout = function () {
+                AuthService.logout();
+                $route.reload();
             }
         }
     ]);
