@@ -31,14 +31,16 @@ angular
                     });
 
                     var timetable = new Timetable();
-                    var start = 8;
-                    var end = 18;
-                    timetable.setScope(start, end); // optional, only whole hours between 0 and 23
+                    var start = 12;
+                    var end = 12;
                     timetable.addLocations(["Понеделник", "Вторник", "Сряда", "Четвъртък", "Петък", "Събота", "Неделя"]);
                     for (var i = $scope.selectedCourses.length - 1; i >= 0; i--) {
                         var course = $scope.selectedCourses[i];
+                        start = Math.min(start, parseInt(course.from));
+                        end = Math.max(end, parseInt(course.to));
                         timetable.addEvent(course.name, course.day, new Date(2015, 7, 17, course.from, 0), new Date(2015, 7, 17, course.to, 0));
                     };
+                    timetable.setScope(start, end);
                     var renderer = new Timetable.Renderer(timetable);
                     renderer.draw('.timetable'); // any css selector
 
@@ -58,6 +60,12 @@ angular
                     $scope.removeCourse = function (course) {
                         var index = -1;
 
+                        timetable = new Timetable();
+                        renderer = new Timetable.Renderer(timetable);
+                        start = 8;
+                        end = 18;
+                        timetable.setScope(start, end);
+                        timetable.addLocations(["Понеделник", "Вторник", "Сряда", "Четвъртък", "Петък", "Събота", "Неделя"]);
                         for (var i = $scope.selectedCourses.length - 1; i >= 0; i--) {
                             var c = $scope.selectedCourses[i];
                             if (c._id != course._id) {
@@ -69,9 +77,11 @@ angular
                                 index = i;
                             }
                         };
+                        SelectionFactory.remove($scope.user._id, $scope.selectedCourses[index]._id);
 
                         $scope.selectedCourses.splice(index, 1);
                         timetable.setScope(start, end);
+
                         renderer.draw('.timetable'); // any css selector
                     }
                 });
