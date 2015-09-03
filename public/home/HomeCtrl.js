@@ -46,6 +46,26 @@ angular
 
 
                     $scope.addCourse = function (course) {
+                        for (var i = $scope.selectedCourses.length - 1; i >= 0; i--) {
+                            if ($scope.selectedCourses[i]._id == course._id) {
+                                alert("This course is already added.");
+                                return;
+                            }
+                        };
+                        for (var i = $scope.selectedCourses.length - 1; i >= 0; i--) {
+                            if ($scope.selectedCourses[i].day == course.day) {
+                                if (($scope.selectedCourses[i].from <= course.to && course.to <= $scope.selectedCourses[i].to) ||
+                                    $scope.selectedCourses[i].from <= course.from && course.from <= $scope.selectedCourses[i].to) {
+
+                                    var confirm = window.confirm("The time of the course " + course.name + " overlapse with the course " +
+                                        $scope.selectedCourses[i].name + ". Are you sure you want to add it?");
+
+                                    if (!confirm) {
+                                        return;
+                                    }
+                                }
+                            }
+                        };
                         start = Math.min(start, parseInt(course.from));
                         end = Math.max(end, parseInt(course.to));
 
